@@ -21,6 +21,17 @@ export const onCreatePost = /* GraphQL */ `
         }
         nextToken
       }
+      tags {
+        items {
+          id
+          tag
+          postTag
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -46,6 +57,17 @@ export const onUpdatePost = /* GraphQL */ `
         }
         nextToken
       }
+      tags {
+        items {
+          id
+          tag
+          postTag
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -65,6 +87,17 @@ export const onDeletePost = /* GraphQL */ `
           id
           postId
           message
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      tags {
+        items {
+          id
+          tag
+          postTag
           username
           createdAt
           updatedAt
@@ -106,6 +139,42 @@ export const onDeleteComment = /* GraphQL */ `
       id
       postId
       message
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateTag = /* GraphQL */ `
+  subscription OnCreateTag($username: String) {
+    onCreateTag(username: $username) {
+      id
+      tag
+      postTag
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTag = /* GraphQL */ `
+  subscription OnUpdateTag($username: String) {
+    onUpdateTag(username: $username) {
+      id
+      tag
+      postTag
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTag = /* GraphQL */ `
+  subscription OnDeleteTag($username: String) {
+    onDeleteTag(username: $username) {
+      id
+      tag
+      postTag
       username
       createdAt
       updatedAt

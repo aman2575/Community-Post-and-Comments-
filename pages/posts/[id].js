@@ -31,13 +31,13 @@ export default function Post({ post }) {
   // console.log('post: ', post)
   return (
     <div>
-      <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.title}</h1>
+      <h1 className="text-5xl mt-4 font-semibold tracking-wide">{[post.title]}</h1>
       {
         coverImage && <img src={coverImage} className="mt-4" />
       }
-      <p className="text-sm font-light my-4">by {post.username}</p>
+      <p className="text-sm font-light my-4">by {[post.username]}</p>
       <div className="mt-8">
-        <ReactMarkdown>{post.content}</ReactMarkdown>  
+        <ReactMarkdown>{[post.content]}</ReactMarkdown>  
       </div>
       
       { user && <Comments postId={post.id} /> }

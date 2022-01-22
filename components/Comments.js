@@ -19,8 +19,9 @@ export default function Comments({ postId }) {
     updateFormState({ message: e.target.value });
   }
   async function fetchComments() {
-    const commentData = await API.graphql({ query: commentsByPostId, variables: { postId }})
-    updateComments(commentData.data.commentsByPostId.items);
+    try{const commentData = await API.graphql({ query: commentsByPostId, variables: { postId }})
+    updateComments(commentData.data.commentsByPostId.items);}
+    catch(error){console.log(error)}
   }
   async function createCommentMutation() {
     if (!formState.message) return;

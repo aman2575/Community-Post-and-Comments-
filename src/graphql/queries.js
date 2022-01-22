@@ -21,6 +21,17 @@ export const getPost = /* GraphQL */ `
         }
         nextToken
       }
+      tags {
+        items {
+          id
+          tag
+          postTag
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -41,6 +52,9 @@ export const listPosts = /* GraphQL */ `
         coverImage
         username
         comments {
+          nextToken
+        }
+        tags {
           nextToken
         }
         createdAt
@@ -73,6 +87,9 @@ export const postsByUsername = /* GraphQL */ `
         coverImage
         username
         comments {
+          nextToken
+        }
+        tags {
           nextToken
         }
         createdAt
@@ -132,6 +149,64 @@ export const commentsByPostId = /* GraphQL */ `
         id
         postId
         message
+        username
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getTag = /* GraphQL */ `
+  query GetTag($id: ID!) {
+    getTag(id: $id) {
+      id
+      tag
+      postTag
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTags = /* GraphQL */ `
+  query ListTags(
+    $filter: ModelTagFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        tag
+        postTag
+        username
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const tagByPostId = /* GraphQL */ `
+  query TagByPostId(
+    $postTag: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelTagFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    tagByPostId(
+      postTag: $postTag
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        tag
+        postTag
         username
         createdAt
         updatedAt

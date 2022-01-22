@@ -10,6 +10,7 @@ type Post @model
   coverImage: String
   username: String @index(name:"postByUsername",queryField: "postsByUsername")
   comments: [Comment] @hasMany(indexName: "commentsByPostId", fields: ["id"])
+  tags: [Tag] @hasMany(indexName: "tagByPostId", fields:["id"])
   createdAt: AWSDateTime
 }
 
@@ -23,4 +24,17 @@ type Comment @model
   postId: ID! @index(name: "commentsByPostId", queryField: "commentsByPostId")
   message: String!
   username: String
+}
+
+
+type Tag @model 
+@auth(rules: [
+    { allow: owner, ownerField: "username" },
+    { allow: public, operations: [read] }
+  ]){
+  id:ID!
+  tag: String!
+  postTag: ID! @index(name:"tagByPostId", queryField:"tagByPostId")
+  username:String!
+
 }

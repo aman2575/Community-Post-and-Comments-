@@ -17,7 +17,6 @@ function CreatePost() {
   const { title, content } = post
   const router = useRouter()
   function onChange(e) {
-    e.persist()
     setPost(() => ({ ...post, [e.target.name]: e.target.value }))
   }
   async function createNewPost() {

@@ -24,6 +24,17 @@ export const createPost = /* GraphQL */ `
         }
         nextToken
       }
+      tags {
+        items {
+          id
+          tag
+          postTag
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -52,6 +63,17 @@ export const updatePost = /* GraphQL */ `
         }
         nextToken
       }
+      tags {
+        items {
+          id
+          tag
+          postTag
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -74,6 +96,17 @@ export const deletePost = /* GraphQL */ `
           id
           postId
           message
+          username
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      tags {
+        items {
+          id
+          tag
+          postTag
           username
           createdAt
           updatedAt
@@ -124,6 +157,51 @@ export const deleteComment = /* GraphQL */ `
       id
       postId
       message
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createTag = /* GraphQL */ `
+  mutation CreateTag(
+    $input: CreateTagInput!
+    $condition: ModelTagConditionInput
+  ) {
+    createTag(input: $input, condition: $condition) {
+      id
+      tag
+      postTag
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateTag = /* GraphQL */ `
+  mutation UpdateTag(
+    $input: UpdateTagInput!
+    $condition: ModelTagConditionInput
+  ) {
+    updateTag(input: $input, condition: $condition) {
+      id
+      tag
+      postTag
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteTag = /* GraphQL */ `
+  mutation DeleteTag(
+    $input: DeleteTagInput!
+    $condition: ModelTagConditionInput
+  ) {
+    deleteTag(input: $input, condition: $condition) {
+      id
+      tag
+      postTag
       username
       createdAt
       updatedAt
